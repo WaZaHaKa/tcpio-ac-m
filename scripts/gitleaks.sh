@@ -8,7 +8,18 @@ cd "$root"
 meta="$(mktemp)"
 binfile="$(mktemp)"
 trap 'rm -f "$meta" "$binfile"' EXIT
-curl -fsSL "https://api.github.com/repos/gitleaks/gitleaks/releases/latest" -o "$meta"
+
+# Runners share an unauthenticated API budget, so a bare request often returns 403.
+# Use the Actions token when it is present. The token stays in the environment.
+token="${GH_TOKEN:-${GITHUB_TOKEN:-}}"
+curl_gh() {
+  local args=(-fsSL --retry 5 --retry-all-errors --retry-delay 2 -H "User-Agent: tcpio-ac-m" -H "Accept: application/vnd.github+json")
+  if [[ -n "$token" ]]; then
+    args+=(-H "Authorization: Bearer ${token}")
+  fi
+  curl "${args[@]}" "$@"
+}
+curl_gh "https://api.github.com/repos/gitleaks/gitleaks/releases/latest" -o "$meta"
 
 GITLEAKS_META="$meta" GITLEAKS_BINFILE="$binfile" node --input-type=module <<'EOF'
 import { execFileSync } from "node:child_process";
@@ -28,8 +39,11 @@ if (!fs.existsSync(bin)) {
   fs.mkdirSync(dir, { recursive: true });
   const archivePath = path.join(dir, archive.name);
   const sumsPath = path.join(dir, "checksums.txt");
-  execFileSync("curl", ["-fsSL", "-o", archivePath, archive.browser_download_url], { stdio: "inherit" });
-  execFileSync("curl", ["-fsSL", "-o", sumsPath, sums.browser_download_url], { stdio: "inherit" });
+  const token = process.env.GH_TOKEN || process.env.GITHUB_TOKEN || "";
+  const curlArgs = ["-fsSL", "--retry", "5", "--retry-all-errors", "--retry-delay", "2", "-H", "User-Agent: tcpio-ac-m"];
+  if (token) curlArgs.push("-H", `Authorization: Bearer ${token}`);
+  execFileSync("curl", [...curlArgs, "-o", archivePath, archive.browser_download_url], { stdio: "inherit" });
+  execFileSync("curl", [...curlArgs, "-o", sumsPath, sums.browser_download_url], { stdio: "inherit" });
   const wanted = fs
     .readFileSync(sumsPath, "utf8")
     .split("\n")
