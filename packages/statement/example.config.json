@@ -1,0 +1,12 @@
+{
+  "controller": "{{CONTROLLER_NAME}}",
+  "coordinator": {
+    "name": "{{COORDINATOR_NAME}}",
+    "phone": "{{COORDINATOR_PHONE}}",
+    "email": "{{COORDINATOR_EMAIL}}"
+  },
+  "date": "2026-11-24",
+  "adjustments": [],
+  "limitations": [],
+  "tests": []
+}

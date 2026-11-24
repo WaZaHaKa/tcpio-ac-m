@@ -1,0 +1,32 @@
+{
+  "name": "tcpio-ac-m",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Self-hosted accessibility toolbar for small sites. Not a conformance claim.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "fetch-upstream": "node scripts/fetch-upstream.mjs",
+    "vendor:check": "node scripts/fetch-upstream.mjs --check",
+    "statement": "node --experimental-strip-types packages/statement/src/cli.ts",
+    "demo:statement": "node --experimental-strip-types packages/statement/src/cli.ts --config demo/statement.config.json --out demo/statement.html --stylesheet demo.css",
+    "lint": "eslint . && tsc --noEmit",
+    "test": "node --experimental-strip-types --test test/*.test.ts && php packages/wp-plugin/tests/sanitize-test.php && find packages/wp-plugin -name '*.php' -print0 | xargs -0 -n1 php -l",
+    "audit:demo": "node scripts/audit-demo.mjs"
+  },
+  "overrides": {
+    "axe-core": "$axe-core"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.6.6",
+    "axe-core": "^4.14.1",
+    "eslint": "^10.15.0",
+    "pa11y": "^10.0.0",
+    "puppeteer": "^25.18.1",
+    "typescript": "^7.0.2"
+  }
+}

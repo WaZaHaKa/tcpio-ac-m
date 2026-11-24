@@ -1,0 +1,17 @@
+{
+  "id": "nagishon",
+  "npm": "nagishon",
+  "toolbar": "nagishon.iife.js",
+  "prepaint": "prepaint.js",
+  "autoAttribute": "data-nagishon",
+  "localeAttribute": "data-locale",
+  "statementAttribute": "data-statement-url",
+  "locales": [
+    "he",
+    "en",
+    "ar",
+    "ru"
+  ],
+  "defaultLocale": "he",
+  "defer": true
+}
