@@ -1,0 +1,6 @@
+Files in upstream/ are an unmodified copy of the fetched package.
+receipt.json records the version and the registry integrity.
+LICENSE is the upstream MIT license. Keep it with these files.
+nagishon.iife.js is that build with packages/script/csp-adapter.js prepended,
+so the toolbar can apply its CSS under default-src 'self'; script-src 'self'.
+prepaint.js is unmodified.

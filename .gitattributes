@@ -1,0 +1,7 @@
+* text=auto eol=lf
+packages/script/dist-vendor/nagishon.iife.js linguist-vendored
+packages/script/dist-vendor/prepaint.js linguist-vendored
+packages/script/dist-vendor/upstream/** linguist-vendored
+packages/wp-plugin/assets/nagishon.iife.js linguist-vendored
+packages/wp-plugin/assets/prepaint.js linguist-vendored
+packages/wp-plugin/assets/LICENSE.nagishon linguist-vendored

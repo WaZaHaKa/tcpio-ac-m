@@ -1,0 +1,14 @@
+{
+  "name": "nagishon",
+  "version": "1.0.0",
+  "integrity": "sha512-jeA/ua7RSE8ImL9CUCpsZ+NhtmDy23ZqnPHy+9YmVEyuyaHd4RQJKJgOdFg8lTHDhF/DW9UHP/qTvPlbiElb4Q==",
+  "license": "MIT",
+  "fetchedAt": "2026-11-24T14:09:27.232Z",
+  "adapter": "csp-style-adopted-stylesheets",
+  "files": {
+    "upstream/nagishon.iife.js": "7d36379db708438a7be0494eead2b47aba8a1372afaad64a9c3f4cb91372c9e0",
+    "upstream/LICENSE": "f79596bfa35d6e4de8e5110bbc73bf1f1795de1e96f8ed8118ec9166fa527254",
+    "nagishon.iife.js": "89d87899eeb48c2e50f1d57dcfb54c8ad90f2ae4dd6f97664f703cbf0f27b9db",
+    "prepaint.js": "f6cbef2b993351be27dab4fce9d1fbddfbdc6c28e1dc2b8b08e8af4a9e736520"
+  }
+}
